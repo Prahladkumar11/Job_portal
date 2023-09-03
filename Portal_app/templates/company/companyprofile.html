@@ -1,0 +1,142 @@
+{% extends "company/base2.html" %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="rounded shadow bg-white p-4">
+                    <div class="custom-form">
+                        <div id="message3"></div>
+                        <form method="post" action="{% url 'updatecompanyprofile' %}" name="contact-form" id="contact-form3"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h4 class="text-dark mb-3">Company Detail :</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Company Name</label>
+                                        <input id="" type="text" class="form-control resume" placeholder="Company Name" name="CompanyName" value="{{user_data.CompanyName}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Company Logo</label>
+                                        <input type="file" name="logo_pic" class="form-control resume">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Email Address</label>
+                                        <input id="email-address" type="text" class="form-control resume" placeholder="" value="{{request.session.email}}" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Contact No.</label>
+                                        <input id="number" type="text" class="form-control resume" placeholder="" name="contact" value="{{user_data.contact}}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">H.R Name</label>
+                                        <input id="" type="text" class="form-control resume" placeholder="First name" name="onwername" value="{{user_data.firstname}} {{user_data.lastname}}">
+                                    </div>
+                                </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Type</label>
+                                        <input id="" type="text" class="form-control resume" placeholder="Company Type" name="type" value="{{user_data.type}}">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        
+
+                                        <label for="year" class="text-muted">Founded</label>
+                                        <input type="number" class="form-control resume" id="year" name="founded" min="1900" max="2099" placeholder="Enter a year" value="{{user_data.founded}}" required>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Website</label>
+                                        <input id="url" type="text" class="form-control resume" placeholder="" name="website" value="{{user_data.website}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Adrress</label>
+                                        <input id="" type="text" name="address" class="form-control resume" placeholder="" value="{{user_data.address}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">State</label>
+                                        <input id="city" type="text" name="state" class="form-control resume" placeholder="" value="{{user_data.state}}">
+                                    </div>
+                                </div>
+                            </div>
+                                                   
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Services</label>
+                                        <textarea class="form-control" name="services" id="services" rows="2" placeholder="Services" >{{user_data.services}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">About us</label>
+                                        <textarea class="form-control" name="aboutus" id="services" rows="2" placeholder="">{{user_data.aboutus}}</textarea>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                            
+
+                           
+
+                            
+
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    <input type="submit" value="Update" class="btn btn-primary">
+                                    <!-- <a href="#" class="btn btn-primary"></a> -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

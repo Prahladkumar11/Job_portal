@@ -1,0 +1,324 @@
+{% extends "base1.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+    <!-- Start home -->
+    <section class="bg-half page-next-level" style="background: url('{% static 'images/bg/bg1.jpg' %}') center center;">
+        
+        <div class="bg-overlay">
+            
+        </div>
+        <div class="container">
+            
+            <div class="row justify-content-center">
+                
+                <div class="col-md-6">
+                    
+                    <div class="text-center text-white">
+                        
+                        <form action="{% url 'updatepic' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="profile-image" onclick="triggerFileInput()">
+
+                                {% if user_data.profile_pic  %}
+
+                                    <label for="profile-pic-input">
+                                        <img  src="{{ user_data.profile_pic.url }}" style="border-radius: 50%; width:70%" alt="Profile Picture">
+                                    </label>
+
+                                {% else %}
+
+                                    <label for="profile-pic-input">
+                                        <img src="{% static 'images/default/d1.png' %}" style="border-radius: 50%; width:350px" alt="Profile Picture">
+                                    </label>
+                                    <input type="file" name="profile_pics" id="profile-pic-input" style="display:none">
+
+                                {% endif %}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <div class="input-group mt-2 mb-2">
+                                                <div class="custom-file">
+                                                    <input type="file" name="profile_pics" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label rounded"><i class="mdi mdi-cloud-upload mr-1"></i> Upload Pics</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <br>
+                        
+                                        <li class="list-inline-item">
+                                            <h6 class="text-muted mb-0">Upload Profile Pics.</h6>
+                                        </li>
+                                    </ul>
+                                    <input type="submit" class="btn btn-primary" value="Upload"><br> <br>
+                                    <!-- <button href="" class="btn btn-primary">Roll-Back Previous Profile Pic</button> -->
+                                    <a href="{% url 'rollbackpic' %}" class="btn btn-primary">Roll-Back Previous Profile Pic</a>
+
+                                </div>
+                            </div>
+                        </form>
+                          <br><br>
+                        <h4 class="text-uppercase title mb-4">Profile</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                            <li><a href="{% static 'index.html' %}" class="text-uppercase font-weight-bold">Home</a></li>
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Profile</span> 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+    <!-- POST A JOB START -->
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="rounded shadow bg-white p-4">
+                        <div class="custom-form">
+                            <div id="message3"></div>
+                            <form method="post" action="{% url 'updateprofile' %}" name="contact-form" id="contact-form3">
+                                {% csrf_token %}
+                                <h4 class="text-dark mb-3">Personal Detail :</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">First Name</label>
+                                            <input id="" type="text" class="form-control resume" placeholder="First name" name="firstname" value="{{user_data.firstname}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Last Name</label>
+                                            <input id="" type="text" class="form-control resume" placeholder="Last Name" name="lastname" value="{{user_data.lastname}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Adrress</label>
+                                            <input id="" type="text" name="address" class="form-control resume" placeholder="" value="{{user_data.address}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">City</label>
+                                            <input id="city" type="text" name="city" class="form-control resume" placeholder="" value="{{user_data.city}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">State</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="state" >
+                                                    <option value="{{user_data.state}}">{{user_data.state}}</option>
+                                                    <option value="Andra Pradesh">Andra Pradesh</option>
+                                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                    <option value="Assam">Assam</option>
+                                                    <option value="Bihar">Bihar</option>
+                                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                                    <option value="Goa">Goa</option>
+                                                    <option value="Gujarat">Gujarat</option>
+                                                    <option value="Haryana">Haryana</option>
+                                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                    <option value="Jharkhand">Jharkhand</option>
+                                                    <option value="Karnataka">Karnataka</option>
+                                                    <option value="Kerala">Kerala</option>
+                                                    <option value="Madya Pradesh">Madya Pradesh</option>
+                                                    <option value="Maharashtra">Maharashtra</option>
+                                                    <option value="Manipur">Manipur</option>
+                                                    <option value="Meghalaya">Meghalaya</option>
+                                                    <option value="Mizoram">Mizoram</option>
+                                                    <option value="Nagaland">Nagaland</option>
+                                                    <option value="Orissa">Orissa</option>
+                                                    <option value="Punjab">Punjab</option>
+                                                    <option value="Rajasthan">Rajasthan</option>
+                                                    <option value="Sikkim">Sikkim</option>
+                                                    <option value="Tamil Nadu">Tamil Nadu</option>
+                                                    <option value="Telangana">Telangana</option>
+                                                    <option value="Tripura">Tripura</option>
+                                                    <option value="Uttaranchal">Uttaranchal</option>
+                                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                    <option value="West Bengal">West Bengal</option>
+                                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                    <option value="Chandigarh">Chandigarh</option>
+                                                    <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                    <option value="Daman and Diu">Daman and Diu</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                    <option value="Lakshadeep">Lakshadeep</option>
+                                                    <option value="Pondicherry">Pondicherry</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Country</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" >
+                                                    
+                                                    <option value="India">India</option>
+                                                    <option value="Bangladesh">Bangladesh</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="USA">USA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Gender</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="gender">
+                                                    <option value="{{user_data.gender}}">{{user_data.gender}}</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">DOB</label>
+                                            <input id="minimum-salary" type="date" name="dob" class="form-control resume" placeholder="$8000" value="{{user_data.dob}}">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Highest Qualification</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="education">
+                                                    <option value="{{user_data.education}}">{{user_data.education}}</option>
+                                                    <option value="MBA">MBA</option>
+                                                    <option value="M-TECH">M-TECH</option>
+                                                    <option value="B-TECH">B-TECH</option>
+                                                    <option value="M Sc">M Sc.</option>
+                                                    <option value="B Sc.">B Sc.</option>
+                                                    <option value="Diploma">Diploma<option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Website</label>
+                                            <input id="url" type="text" class="form-control resume" placeholder="" name="website" value="{{user_data.website}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Email Address</label>
+                                            <input id="email-address" type="text" class="form-control resume" placeholder="" value="{{request.session.email}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Phone Number</label>
+                                            <input id="number" type="text" class="form-control resume" placeholder="" name="contact" value="{{user_data.contact}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+
+                               
+
+                                
+
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2">
+                                        <input type="submit" value="Save" class="btn btn-primary">
+                                        <!-- <a href="#" class="btn btn-primary"></a> -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- POST A JOB END -->
+
+    <!-- subscribe start -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="float-left position-relative notification-icon mr-2">
+                        <i class="mdi mdi-bell-outline text-primary"></i>
+                        <span class="badge badge-pill badge-danger">1</span>
+                    </div>
+                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
+                </div>
+                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
+                    <form>
+                        <div class="form-group mb-0">
+                            <div class="input-group mb-0">
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe end -->
+
+    <script>
+        function triggerFileInput() {
+            document.getElementById('inputGroupFile01').click();
+        }
+    
+        function displaySelectedImage(event) {
+            const fileInput = event.target;
+            const reader = new FileReader();
+    
+            reader.onload = function() {
+                const profileImage = document.querySelector('.profile-image img');
+                profileImage.src = reader.result;
+            };
+    
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    </script>
+
+
+{% endblock %}

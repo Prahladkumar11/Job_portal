@@ -1,0 +1,168 @@
+{% extends "company/base2.html" %}
+
+{% block content %}
+
+
+
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="rounded shadow bg-white p-4">
+                    
+                        <div id="message3"></div>
+                        <form method="post" action="{% url 'postjob' %}" id="contact-form">
+                            {% csrf_token %}
+                            <h4 class="text-dark mb-3">Post a New Job :</h4>
+                            <input type="hidden" name="id" value="{{job_detail.id}}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Title</label>
+                                        <input id="company-name" type="text" class="form-control resume" placeholder="Job Title" name="jobtitle" value="{{job_detail.JobTitle}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Location</label>
+                                        <input id="city" type="text" class="form-control resume" placeholder="Job Location" name="joblocation" value="{{job_detail.JobLocation}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Country</label>
+                                        <input id="country" type="text" class="form-control resume" placeholder="Country" name="country" value="india">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Minimum Salary</label>
+                                        <input name="minsalary" type="text" class="form-control resume" placeholder="INR 8000" value="{{job_detail.minSalary}}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Maximum Salary</label>
+                                        <input name="maxsalary" type="text" class="form-control resume" placeholder="$20000" value="{{job_detail.maxSalary}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Type</label>
+                                        <div class="form-button">
+                                            <select class="nice-select rounded" name="jobtype" >
+                                                <option value="{{job_detail.JobType}}">{{job_detail.JobType}}</option>
+                                                <option value="Full Time">Full Time</option>
+                                                <option value="Part Time">Part Time</option>
+                                                <option value="Intership">Intership</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Year of Experience</label>
+                                        <div class="form-button">
+                                            <select class="nice-select rounded" name="jobexperience">
+                                                <option value="{{job_detail.JobExperience}}">{{job_detail.JobExperience}}</option>
+                                                <option value="1">1 Year</option>
+                                                <option value="2">2 Year</option>
+                                                <option value="3">3 Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Website</label>
+                                        <input name="website" type="text" class="form-control resume" placeholder="Website" value="{{user_data.website}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Required Skill</label>
+                                        <input name="jobskills" type="text" class="form-control resume" placeholder="Skill , Use ',' to separate skills" value="{{job_detail.JobSkills}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Email Address</label>
+                                        <input name="email" type="text" class="form-control resume" placeholder="" value="{{request.session.email}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Phone Number</label>
+                                        <input name="contact" type="text" class="form-control resume" placeholder=" Contact" value="{{user_data.contact}}" >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Qualification</label>
+                                        <textarea placeholder="Use  '->'  to make a new point or display in list form" name="qualification" class="form-control resume" row="4">{{job_detail.Qualification}}</textarea>
+                                        </div>
+                                    </div>
+                                
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Responsiblities</label>
+                                            <textarea name="responsiblities"placeholder="Use  '->'  to make a new point or display in list form"  class="form-control resume" row="4">{{job_detail.Responsibilities}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                           
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group app-label mt-2">
+                                        <label class="text-muted">Job Description</label>
+                                        <textarea name="jobdescription" rows="6" class="form-control resume" placeholder="Use  '->'  to make a new point or display in list form">{{job_detail.JobDescription}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    
+                                    <button type="submit" class="btn btn-primary">Post a Job</button>
+                                    <!-- <a href="#" class="btn btn-primary">Post a Job</a> -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- POST A JOB END -->
+
+
+{% endblock %}

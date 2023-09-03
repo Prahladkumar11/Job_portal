@@ -1,0 +1,103 @@
+{% extends "company/base2.html" %}
+{% block title %}Posted Job list{% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Job Lists</h1>
+   
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        
+        <div class="card-header py-3">
+            
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <!-- <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> -->
+                <a href="{% url 'postjobpage' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Post a Job  </a>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Job Title</th>
+                            <th>is_active</th>
+                            <th>Location</th>
+                            <th>Job type</th>
+                            <th>Experience</th>
+                            <th>Responsibility</th>
+                            <th>Salary</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        {% for job in job_details %}
+                        <tr >
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 10px; word-wrap: break-word;">{{forloop.counter}}</td>
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 150px; word-wrap: break-word;">
+                                <div class="d-flex" style="max-height: 170px; overflow-y: auto; word-wrap: break-word;">
+                                    {{job.JobTitle}}
+                                    
+
+                                </div>
+                            </td>
+                            <td>
+                                {% if job.is_active %}
+                                <a href="{% url 'deactivate' job.id %}" class="btn btn-success btn-circle">
+                                <i class="fas fa-check"></i>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'active' job.id %}" class="btn btn-success btn-danger btn-circle">
+                                <i class="fas fa-times"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 100px; word-wrap: break-word;">{{job.JobLocation}}</td>
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 100px; word-wrap: break-word;">{{job.JobType}}</td>
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 50px; word-wrap: break-word;">{{job.JobExperience}} Year</td>
+                            <td style="  overflow-y: auto; max-width: 160px; word-wrap: break-word;">
+                                    <div style="max-height: 170px; overflow-y: auto; word-wrap: break-word;">
+                                        {{job.Responsibilities}} 
+                                    </div>
+                            </td>
+                            <td style=" max-height: 100px; overflow-y: auto; max-width: 100px; word-wrap: break-word;">₹  {{job.minSalary}}-{{job.maxSalary}}</td>
+                            
+                        <td>
+                            
+                                <!-- <a href="{% url 'editpost' job.id %}" class="btn btn-primary">E dit</a> -->
+                                <a href="{% url 'editpost' job.id %}" class="btn btn-primary btn-circle mr-2">
+                                    <i class="fas fa-edit"></i>
+                                <a href="{% url 'deletepost' job.id %}" class="btn btn-danger btn-circle ">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                                <!-- <a href="" class="btn btn-danger">Delete</a> -->
+                            </td>
+                        
+                        </tr>
+                        {% endfor %}
+                        
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+<!-- /.container-fluid -->
+
+
+{% endblock %}

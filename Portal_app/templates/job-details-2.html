@@ -1,0 +1,287 @@
+{% extends "base1.html" %}
+{% load static %}
+
+{% block title %}Job Detail {% endblock %}
+{% block content %}
+
+
+      <!-- Start home -->
+      <section class="bg-half page-next-level" style="background: url('{% static 'images/bg/bg1.jpg' %}') center center;"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Job Detail</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                            <li><a href="{% url 'index' %}" class="text-uppercase font-weight-bold">Home</a></li>
+                            <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li> 
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Job Detail two</span> 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+<!-- JOB SINGLE START -->
+
+<section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7">
+                    <div class="job-detail text-center job-single border rounded p-4">
+                        <div class="job-single-img mb-2">
+                            <img src="{{job.Company_id.logo_pic.url}}" alt="" class="img-fluid mx-auto d-block" width="150px">
+                        </div>
+                        <h4 class=""><a href="#" class="text-dark">{{job.JobTitle}}</a></h4>
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item mr-3">
+                                <p class="text-muted mb-2"><i class="mdi mdi-bank mr-1"></i>{{job.Company_id.CompanyName}}</p>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <p class="text-muted mb-2"><i class="mdi mdi-map-marker mr-1"></i>{{job.JobLocation}}</p>
+                            </li>
+
+                            <li class="list-inline-item">
+                                <p class="text-muted mb-2"><i class="mdi mdi-currency-usd mr-1"></i>{{job.minSalary}}-{{job.maxSalary}}</p>
+                            </li>
+                        </ul>
+                        <p class="text-muted mb-0">{{job.Company_id.aboutus}}</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="text-dark mt-4">Job Description :</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <div class="job-detail-desc">
+                                    <p class="text-muted mb-3">{{job.JobDescription}}</p>
+
+                                </div>
+
+                                <ul class="list-inline mt-3 mb-0">
+                                    <li class="list-inline-item mr-3">
+                                        <a href="{{ job.Company_id.website }}" class="text-muted mb-0" target="_blank">
+                                            <i class="mdi mdi-earth mr-1">
+                                            </i>
+                                            {{ job.Company_id.website|urlize }}
+                                        </a>
+                                        
+                                    </li>
+
+                                    <li class="list-inline-item mr-3">
+                                        <a href="" class="text-muted mb-0"><i class="mdi mdi-download mr-1"></i>Download Info</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-dark mt-4">Required Skills :</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <div class="job-detail-desc d-flex flex-wrap">
+                                    {% for skill in job.JobSkills|split:"," %}
+                                    <div class="job-details-desc-item">
+                                        
+                                        <p class="text-muted mb-2 btn btn-primary   mr-2">{{skill}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="text-dark mt-4">Education & Experience :</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <div class="job-detail-desc">
+                                    {% for qual in job.Qualification|split:"->" %}
+                                    <div class="job-details-desc-item">
+                                        <div class="float-left mr-3">
+                                            <i class="mdi mdi-minus text-muted"></i>
+                                        </div>
+                                        <p class="text-muted mb-2">{{qual}}</p>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="text-dark mt-4">Responsibilities :</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="job-detail border rounded mt-2 p-4">
+                                <div class="job-detail-desc">
+                                    {% if job.Responsibilities %}
+                                    {% for res in job.Responsibilities|split:'->' %}
+                                    <div class="job-details-desc-item">
+                                        <div class="float-left mr-3">
+                                            <i class="mdi mdi-minus text-muted"></i>
+                                        </div>
+                                        <p class="text-muted mb-2">{{res}}</p>
+                                    </div>
+                                    {% endfor %}  
+                                    
+                                    {% else %}
+                                    
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                  
+                </div>
+
+                <div class="col-lg-4 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                    <div class="company-brand-logo text-center">
+                        <img src="images/featured-job/img-2.png" alt="" class="img-fluid mx-auto d-block mb-3">
+                        <h5 class="text-muted mb-0"><a href="#" class="text-muted"><i class="mdi mdi-bank mr-1"></i>{{job.Company_id.CompanyName}}</a></h5>
+                    </div>
+
+                    <div class="job-detail rounded border job-overview mt-4 mb-4">
+                        <div class="single-post-item mb-4">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-security text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Experience</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">{{job.JobExperience}} year</h6>
+                            </div>
+                        </div>
+
+                        <div class="single-post-item mb-4">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-currency-usd text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Salary</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">{{job.minSalary}}-{{job.maxSalary}}</h6>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="single-post-item mb-4">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-human-male-female text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Gender</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">Male & Female</h6>
+                            </div>
+                        </div>
+
+                        <div class="single-post-item mb-4">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-calendar-today text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Date Posted</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">{{job.PostDate|date:"d/m/y"}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="single-post-item mb-4">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-email text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Email</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">{{job.Company_id.userid.email}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="single-post-item">
+                            <div class="float-left mr-3">
+                                <i class="mdi mdi-phone-classic text-muted mdi-24px"></i>
+                            </div>
+                            <div class="overview-details">
+                                <h6 class="text-muted mb-0">Contact No</h6>
+                                <h6 class="text-black-50 pt-2 mb-0">{{job.Company_id.contact}}</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="text-dark">Job Location</h5>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448196.5335498511!2d76.7628772575707!3d28.64368293718082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1691587497753!5m2!1sen!2sin" class="rounded" style="border: 0" allowfullscreen=""></iframe>
+                    </div>
+
+                    <div class="job-details-desc-item mt-2">
+                        <div class="float-left mr-2">
+                            <i class="mdi mdi-map-marker text-muted"></i>
+                        </div>
+                        <p class="text-muted mb-2">{{job.JobLocation}} {{job.Company_id.state}}</p>
+                    </div>
+
+                    <ul class="social-icon list-inline mb-0 mt-4">
+                        <li class="list-inline-item">Share :</li>
+                        <li class="list-inline-item"><a href="#" class=" rounded"><i class="mdi mdi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class=" rounded"><i class="mdi mdi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class=" rounded"><i class="mdi mdi-google-plus"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class=" rounded"><i class="mdi mdi-whatsapp"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class=" rounded"><i class="mdi mdi-linkedin"></i></a></li>
+                    </ul>
+
+                    <div class="mt-4">
+                        <a href="{% url 'apply' job.id %}" class="btn btn-primary btn-block btn-sm"><i class="mdi mdi-send mr-2"></i>Apply This Job</a>
+                    </div>
+
+                    
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="job-single-social-icon text-center mt-4">
+                                <a href="" class="text-white"><i class="mdi mdi-facebook facebook"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="job-single-social-icon text-center mt-4">
+                                <a href="" class="text-white"><i class="mdi mdi-google-plus google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- JOB SINGLE END -->
+
+  {% endblock content %}
