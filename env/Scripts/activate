@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Desktop\Dajngo\Job_Portal\env"
+VIRTUAL_ENV="D:\Dajngo\Job_Portal\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
