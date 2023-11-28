@@ -113,17 +113,17 @@
                                         </div>
 
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="7">
                                             <label class="custom-control-label ml-1 text-muted" for="customRadio3">Last 7 days</label>
                                         </div>
 
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+                                            <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input"value="14">
                                             <label class="custom-control-label ml-1 text-muted" for="customRadio4">Last 14 days</label>
                                         </div>
 
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+                                            <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input" value="24">
                                             <label class="custom-control-label ml-1 text-muted" for="customRadio5">Last 30 days</label>
                                         </div>
                                     </div>
@@ -258,14 +258,14 @@
                         {% if joblist %}
                         {% for job in joblist %}
                         
-                        <div class="col-lg-12 mt-4 pt-2 job-list-item" data-jobtitle="{{ job.JobTitle }}">
+                        <div class="col-lg-12 mt-4 pt-2 job-list-item" data-jobtitle="{{ job.JobTitle }}" data-postDate{{forloop.counter}}="0">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
                                                 <a href="{% url 'jobdetail' job.id %}">
-                                                <img src="{{job.Company_id.logo_pic.url}}" alt="" class="img-fluid mx-auto d-block">
+                                                <img src="{{job.Company_id.logo_pic.url}}" alt="" class="img-fluid mx-auto d-block" max-width="50%">
                                             </a>
                                             </div>
                                         </div>
@@ -283,10 +283,31 @@
                                                     <li class="list-inline-item mr-3">
                                                         <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i> {{job.JobLocation}}</p>
                                                     </li>
-
+                                                    
                                                     <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-clock-outline mr-2"></i>1 Minute ago</p>
+                                                        <p class="text-muted mb-0"  id="PostDay_{{ forloop.counter }}"><i class="mdi mdi-clock-outline mr-2"></i>1 min ago</p>
                                                     </li>
+                                                    <script>
+                                                        var postDate{{ forloop.counter }} = new Date("{{ job.PostDate|date:'Y-m-d' }}");
+                                                        var currDate{{ forloop.counter }} = new Date("{{ CurDate|date:'Y-m-d' }}");
+                                                        
+                                                        // Calculate the difference in milliseconds
+                                                        var timeDifference{{ forloop.counter }} = currDate{{ forloop.counter }} - postDate{{ forloop.counter }};
+                                                        
+                                                        // Convert milliseconds to days
+                                                        var days{{ forloop.counter }} = timeDifference{{ forloop.counter }} / (1000 * 60 * 60 * 24);
+                                                        console.log(days{{forloop.counter}})
+                                                        
+                                                        
+                                                        document.getElementById("PostDay_{{ forloop.counter }}").innerHTML = days{{ forloop.counter }} + " days ago";
+                                                        var postDateElement = document.querySelector('.job-list-item[data-postdate="{{ forloop.counter }}"]');
+                                                        if (postDateElement) {
+                                                            console.log('he')
+                                                            postDateElement.setAttribute('data-postdate{{ forloop.counter }}', days{{ forloop.counter }});
+                                                        }
+                                                                                                                
+                                                        
+                                                    </script>
                                                 </ul>
                                             </div>
                                         </div>
@@ -376,6 +397,29 @@ $(document).ready(function() {
         } else {
             $('.job-list-item').hide(); // Hide all job list items
             $('.job-list-item[data-jobtitle="' + selectedJobTitle + '"]').show(); // Show the selected job
+        }
+    });
+});
+const datepost = document.querySelectorAll('input[name="customRadio"]');
+
+datepost.forEach((radio) => {
+    radio.addEventListener('change', () => 
+    {
+        if (radio.checked) 
+        {
+            if(radio.value=="male")
+            {
+                document.getElementById("a").innerHTML = radio.value; 
+
+            }
+            else
+            {
+                document.getElementById("a").innerHTML = radio.value; 
+            }           
+        }
+        else
+        {
+
         }
     });
 });

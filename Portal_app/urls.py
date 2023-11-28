@@ -19,6 +19,8 @@ urlpatterns = [
     path('apply/<int:id>/', views.apply, name='apply'),
     path('search', views.SearchResult, name='search'),
     path('Aboutus', views.Aboutus, name='aboutus'),
+    path('contact', views.contact, name='contact'),
+    path('SendData', views.sendData, name='senddata'),
     
     
     

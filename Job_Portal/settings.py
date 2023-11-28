@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9(z=o2+=2f=y%9*3$ed9wqnpt^wluy@%tsaq&*3+cygo5gjgba'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["192.168.0.101","127.0.0.1","localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -88,6 +88,8 @@ WSGI_APPLICATION = 'Job_Portal.wsgi.application'
 #         },
 #     }
 # }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -96,7 +98,13 @@ DATABASES = {
 }
 
 
+# import dj_database_url
 
+# DATABASES={
+#     'default': dj_database_url.parse('postgres://job_portal_hjj4_user:3hJ06bl55hJmvomndw6Z5udLmc9Wz8pq@dpg-cjqbrh5he99c73bdbemg-a.ohio-postgres.render.com/job_portal_hjj4')
+        
+        
+# }
 
 
 # Password validation
@@ -135,8 +143,14 @@ USE_TZ = True
 
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Add your additional directories here if needed
+]
+
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

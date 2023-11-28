@@ -1,0 +1,13 @@
+asgiref
+click
+click-didyoumean
+dj-database-url
+django
+django-environ
+gunicorn
+mysqlclient
+packaging
+Pillow
+psycopg2-binary
+typing_extensions
+tzdata
