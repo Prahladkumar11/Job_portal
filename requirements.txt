@@ -9,6 +9,5 @@ mysqlclient
 packaging
 Pillow
 psycopg2-binary
-sqlpars
 typing_extensions
 tzdata
