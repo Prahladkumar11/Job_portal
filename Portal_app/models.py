@@ -13,6 +13,11 @@ class UserMaster(models.Model):
     
     def __str__(self):
         return self.email
+class ContactData(models.Model):
+    Name=models.CharField( max_length=50)
+    Email=models.EmailField( max_length=254)
+    Sub=models.CharField(max_length=250)
+    Msg=models.CharField(max_length=500)
     
 class Candidate(models.Model):
     userid=models.ForeignKey(UserMaster, on_delete=models.CASCADE,related_name='candidates')
@@ -51,7 +56,8 @@ class Company(models.Model):
     def __str__(self):
         return self.CompanyName
     
-    
+
+   
 class JobDetails(models.Model):
     Company_id=models.ForeignKey(Company, on_delete=models.CASCADE)
     JobTitle=models.CharField(max_length=250)

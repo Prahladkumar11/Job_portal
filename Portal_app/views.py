@@ -299,10 +299,15 @@ def JobList(request):
     
     page_jobs = paginator.get_page(page_number)
     
+    from datetime import datetime
+    CurrDate=datetime.now()
     
     context = {
         'joblist': page_jobs,
-        'job': joblist
+        'job': joblist,
+        "CurDate":CurrDate
+        
+     
         
     }
     
@@ -435,7 +440,21 @@ def deactivatejob(request,id):
 def Aboutus(request):
     return render(request, 'about.html') 
  
-              
+ 
+def contact(request):
+     return render(request,"contact.html")
+ 
+def sendData(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        sub=request.POST.get('sub')
+        msg=request.POST.get('msg')
+        email = request.POST.get('email').lower()
+        
+        ContactData.objects.create(Name=name,Sub=sub,Msg=msg,Email=email)
+        return render(request,"index.html")
+       
+         
                
                
                

@@ -177,7 +177,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="contact.html">contact</a>
+                        <a href="{% url 'contact' %}">contact</a>
                     </li>
                     {% if request.session.role == 'Company' %}
                     <li>
